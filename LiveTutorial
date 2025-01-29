@@ -1,0 +1,105 @@
+What are environment variables and what should we use it for?
+Ans - Environment variables are key-value pairs stored outside the source code and used by applications to manage configuration settings.
+Why use environment variables?
+
+1. Flexibility: Allows for configuration changes without modifying the code.
+2. Security: Prevents sensitive data from being hard-coded into the source code, reducing the risk of accidental exposure.
+3. Keeps sensitive data like passwords and API keys out of the codebase
+
+---
+
+What all thing should you do to prepare code for production? Explain each one of them and why we need it?
+Ans –
+
+1. Use Environment Variables
+   Purpose: Avoid hard-coded values in the source code, such as database credentials, API keys, and configurations.
+   Reason: Hard-coded values are a security risk and make code less flexible. Using environment variables enables environment-specific configurations.
+2. Use Production API Keys
+   Purpose: Replace testing keys with production keys when deploying.
+   Reason: Test keys are designed for development and may not have full functionality. Using production keys ensures your application operates as intended in a live environment.
+3. Reduce Error Output Details –
+   Purpose: Limit the amount of information returned to users in error responses.
+   Reason: Detailed error outputs can expose sensitive information
+4. Set Secure Response Headers -
+   Purpose: Add HTTP headers like Content-Security-Policy, Strict-Transport-Security, and X-Frame-Options.
+   Reason: Secure headers protect against various attacks
+5. Add Asset Compression
+   Purpose: Minify and compress static assets like CSS, JavaScript, and images.
+   Reason: Reduces response sizes, leading to faster load times and better user experiences.
+6. Configure Logging
+   Purpose: Set up logging for monitoring errors, performance issues, and security events.
+   Reason: Proper logging helps you identify and resolve issues in production while avoiding sensitive information leaks.
+7. Use SSL/TLS
+   Purpose: Ensure all data transmitted between the client and server is encrypted.
+   Reason: Protects sensitive information from being intercepted by attackers, ensuring secure communication.
+
+---
+
+Why should we put the port number and the database connection string in env variable?
+Ans –
+
+1. Security
+   • Database Connection Strings: These often include sensitive information such as usernames, passwords, and host details. Exposing them in your source code increases the risk of them being leaked, especially if the code is shared or pushed to a public repository.
+   • Port Number: While not as sensitive as a connection string, keeping the port configurable allows you to avoid exposing it unnecessarily or conflicting with other services on the system.
+2. Flexibility - By using environment variables, you can easily change configurations (like the database used in staging, development, or production) without modifying the source code.
+3. Consistency Across Environments - Having the port number and connection string configurable ensures your application works across different environments with minimal adjustments.
+
+---
+
+What is process variable? What does process.env do?
+Ans - A process variable refers to a variable that is globally available to the Node.js process during runtime. In Node.js, the global object process provides access to process-related information and functionality.
+process.env is a Node.js object that allows access to environment variables. You can use it to read the values of variables set in the environment.
+
+---
+
+What are the key security things which helmet provides. Can you explain a few?
+Ans - Helmet.js is a middleware for Express.js applications that helps secure HTTP headers. HTTP headers can be used to manage the interaction between the client and server.
+
+1. Content Security Policy (CSP) - Prevents cross-site scripting (XSS) and data injection attacks by controlling the sources from which content (like scripts, images, or styles) can be loaded.
+2. Strict-Transport-Security (HSTS) - Forces browsers to only communicate with your server over HTTPS for a specified duration.
+3. Referrer-Policy - Controls the information sent in the Referer header.
+
+---
+
+Using console log for logging can make your application very slow.
+Ans - Using console.log for logging in production is inefficient because:
+
+1. It is synchronous, which blocks the event loop and delays other operations.
+2. Logs are written to stdout (standard output), which is not optimized for high-throughput logging.
+3. Managing large log files manually becomes tedious.
+
+---
+
+How does the udemy trainer configure morgan? Can you explain the flow and what logs will morgan provide
+Ans -
+const express = require('express');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
+const app = express();
+// Create a write stream for logging
+const accessLogStream = fs.createWriteStream(
+path.join(\_\_dirname, 'access.log'),
+{ flags: 'a' } // Append logs to the file
+);
+// Use Morgan to log HTTP requests
+app.use(morgan('combined', { stream: accessLogStream }));
+// Example route
+app.get('/', (req, res) => {
+res.send('Hello, world!');
+});
+// Start server
+app.listen(3000, () => console.log('Server running on port 3000'));
+Flow of How Morgan Works
+
+1. Request Received: When the server receives a request (e.g., GET /), Morgan intercepts it.
+2. Log Format: Morgan uses predefined formats like:
+   o combined: Logs request method, URL, status, response time, and more.
+   o common: Similar to combined but with fewer details.
+   o dev: Short, colorful logs designed for development environments.
+   o Custom: You can define your format if needed.
+3. Write Logs:
+   o In the code above, logs are written to both:
+    The console (if no stream is specified).
+    The access.log file (when the stream is configured).
+   o This ensures persistent logging for production monitoring.

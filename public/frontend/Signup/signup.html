@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../loginAndSignup.css">
+</head>
+<body>
+    <div>
+        <h1>Welcome to Expense Tracker</h1>
+        <div class="signup">
+            <form id="signupform">
+                <div>
+                    <p><label for="name">Name</label></p>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div>
+                    <p><label for="email">Email</label></p>
+                    <input type="text" id="email" name="email">
+                </div>
+
+                <div>
+                    <p><label for="phone">Phone Number</label></p>
+                    <input type="text" id="phone" name="phone">
+                </div>
+
+                <div>
+                    <p><label for="password">Password</label></p>
+                    <input type="text" id="password" name="password" required>
+                </div>
+                <button type="submit" id="btn">Sign Up Now</button>
+                <p>Already a existing member? <a href="../Login/login.html">Log In</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="signup.js"></script>
+</body>
+</html>

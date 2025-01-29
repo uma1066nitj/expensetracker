@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #7c8ca8);
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    color: #fff;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.login:hover {
+    transform: translateY(-10px);
+}
+
+label {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: rgb(48, 48, 48);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #2575fc;
+    box-shadow: 0 2px 5px rgba(37, 117, 252, 0.4);
+}
+
+button {
+    width: 100%;
+    border: none;
+    background-color: #2575fc;
+    border-radius: 20px;
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    box-shadow: 0 0 15px rgba(37, 117, 252, 0.3);
+    background-color: #6a11cb;
+}
+
+p {
+    font-size: 14px;
+    margin-top: 20px;
+        color: #424249;
+        font-weight: bold;
+}
+
+.buttonlink {
+    text-decoration: none;
+    width: 100%;
+        border: none;
+        background-color: #2575fc;
+        border-radius: 20px;
+        padding: 15px;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        margin-top: 20px;
+}
+
+.buttonlink:hover {
+    background-color: #6a11cb;
+}
+
+#forgotpass {
+    background: none;
+    border: none;
+    color: #2575fc;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#forgotpass:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In to Expense Tracker</title>
+    <link rel="stylesheet" href="../loginAndSignup.css">
+</head>
+
+<body>
+    <div>
+    
+        <h1>Welcome to Expense Tracker</h1>
+        <div class="login">
+            <form id="loginform">
+
+                <div>
+                    <p><label for="email">Email</label></p>
+                    <input type="text" id="email" name="email">
+                </div>
+
+                <div>
+                    <p><label for="password">Password</label></p>
+                    <input type="text" id="password" name="password" required>
+                </div>
+                <button type="submit" id="btn">Login</button>
+                <p>New to Expense Tracker <a href="../Signup/signup.html">Sign Up</a></p>
+                <button type="button" id="forgotpass"><a href="../ForgetPassword/forget.html">Forgot Password</a></button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>
