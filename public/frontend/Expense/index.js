@@ -9,6 +9,10 @@ const token = localStorage.getItem("token");
 const setLimitDropdown = document.getElementById("setlimit");
 const paginationInfo = document.getElementById("pagination-info");
 const username = document.getElementById("username");
+document
+  .getElementById("displayReport")
+  .addEventListener("click", displayReport);
+
 let currentPage = 1;
 let totalCount = 0;
 // Add new expense
@@ -28,6 +32,7 @@ function addNewExpense(e) {
     })
     .then((response) => {
       if (response.status === 201) {
+        const limit = parseInt(setLimitDropdown.value);
         addNewExpensetoUI(response.data.expense);
         updatedPagination(currentPage, limit);
         updateButtonsState(currentPage, limit);
@@ -120,6 +125,7 @@ document.getElementById("leaderboard-button").onclick = function () {
         });
 
         document.getElementById("leaderboard").style.display = "block";
+        document.getElementById("downloadexpense").style.display = "block";
       } else {
         throw new Error("Failed to fetch leaderboard");
       }
@@ -280,3 +286,85 @@ function updateClock() {
 }
 // Update the clock every second
 setInterval(updateClock, 1000);
+
+function downloadReport() {
+  axios
+    .get(`${URLTOBACKEND}expense/download`, {
+      headers: { Authorization: token },
+    })
+    .then((response) => {
+      console.log(response.status + "" + response.data.fileURL);
+      if (response.status === 201) {
+        window.open(response.data.fileURL, "_blank");
+      } else {
+        throw new Error(response.data.message);
+      }
+    })
+    .catch((err) => {
+      showError(err);
+    });
+}
+
+function displayReport() {
+  axios
+    .get(`${URLTOBACKEND}expense/report`, { headers: { Authorization: token } })
+    .then((response) => {
+      console.log(response);
+
+      if (
+        response.data &&
+        response.data.reports &&
+        response.data.reports.length > 0
+      ) {
+        const reports = response.data.reports;
+
+        // Generate table rows with auto-incrementing number column
+        const previousReportsRows = reports
+          .map((report, index) => {
+            const createdAt = new Date(report.createdAt);
+            const formattedDate = createdAt.toLocaleDateString(); // Format: MM/DD/YYYY or DD/MM/YYYY
+            const formattedTime = createdAt.toLocaleTimeString(); // Format: HH:MM:SS AM/PM
+
+            return `<tr>
+                <td>${index + 1}</td> 
+                <td>${formattedDate}</td>
+                <td>${formattedTime}</td>
+                <td><a href="${
+                  report.fileURL
+                }" target="_blank">Download</a></td>
+              </tr>
+            `;
+          })
+          .join("");
+
+        // Complete table structure
+        const previousReportsTable = `
+          <h2>Previous Expense Reports</h2>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>S. No.</th> 
+                <th>Date</th>
+                <th>Time</th>
+                <th>Download Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${previousReportsRows}
+            </tbody>
+          </table>
+        `;
+
+        // Display in an HTML element (e.g., a div with id "reportContainer")
+        document.getElementById("reportContainer").innerHTML =
+          previousReportsTable;
+      } else {
+        document.getElementById("reportContainer").innerHTML =
+          "<p>No report data available.</p>";
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching report:", error);
+      alert("Failed to fetch report. Please try again.");
+    });
+}

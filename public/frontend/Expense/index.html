@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             height: 100vh;
@@ -239,7 +240,7 @@
         padding: 8px 12px;
         border: 1px solid #5acb14;
         border-radius: 5px;
-        background-color: #bfcfdc;
+        background-color: #15619f;
         outline: none;
         font-size: 1rem;
         cursor: pointer;
@@ -249,7 +250,28 @@
         .setlimit select:focus {
         border-color: #007bff;
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            height: 100px; 
+        }
+        #downloadexpense {
+            position: relative;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
+        #downloadexpense:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
@@ -261,9 +283,8 @@
             <p style="font-size: 1.5rem; text-align: right;">🕒 <spam id="clock" style="font-size: 1.5rem; font-style: italic; color: #333; border: 2px solid black; padding: 5px;"><spam/></p>
             <div id="user-info" style="text-align: center;">
                 <p style="color: #3eba26; font-weight: bold;">Hello <span id="username"
-                        style="font-size: 1.5rem; font-style: italic;text-decoration: underline;"></span>, Swagat hai aapka!
+                        style="font-size: 1.5rem; font-style: italic;text-decoration: underline;"></span>, Namaste 🙏🙏!
                 </p>
-
             </div>
             <h1>Expense Tracker</h1>
             
@@ -325,10 +346,10 @@
 
             <button id="rzp-button1">Buy Premium</button>
             <button id="leaderboard-button" style="display: none;">Leaderboard</button>
+            
         </div>
 
         <!-- Leaderboard Section -->
-        <button onclick="download()" id="downloadexpense" style="display: none;">Download File</button>
         <div id="leaderboard" style="display: none;">
             <h2>Leaderboard</h2>
             <table>
@@ -343,6 +364,14 @@
                     <!-- Leaderboard data will be dynamically added -->
                 </tbody>
             </table>
+            <div class="button-container">
+                <button id="downloadexpense" onclick="downloadReport()">
+                    <i class="fa fa-download"></i> Report
+                </button>
+            </div>
+            <div id="reportContainer">
+                <button id="displayReport">Previous Downloaded Report</button>
+            </div>
         </div>
         
     </div>

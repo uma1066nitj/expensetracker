@@ -12,6 +12,7 @@ const User = require("./models/user");
 const Expense = require("./models/expenses");
 const Order = require("./models/order");
 const ForgetPassword = require("./models/forgetPasswordRequest");
+const ExpenseReport = require("./models/expenseReport");
 
 const userRoutes = require("./routes/user");
 const expenseRoutes = require("./routes/expense");
