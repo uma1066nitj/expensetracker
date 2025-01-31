@@ -32,7 +32,6 @@ function addNewExpense(e) {
     })
     .then((response) => {
       if (response.status === 201) {
-        const limit = parseInt(setLimitDropdown.value);
         addNewExpensetoUI(response.data.expense);
         updatedPagination(currentPage, limit);
         updateButtonsState(currentPage, limit);

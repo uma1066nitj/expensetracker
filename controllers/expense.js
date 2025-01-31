@@ -172,7 +172,7 @@ exports.ExpenseReport = async (req, res) => {
 exports.downloadExpense = async (req, res, next) => {
   try {
     const expenses = await req.user.getExpenses();
-    // console.log(expenses);
+    console.log(expenses);
     let totalAmount = 0;
     const tableRows = expenses
       .map((expense) => {
