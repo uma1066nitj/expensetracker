@@ -55,10 +55,12 @@ Order.belongsTo(User);
 ForgetPassword.belongsTo(User);
 User.hasMany(ForgetPassword);
 
+const PORT = 3000 || process.env.PORT;
+
 sequelize
   .sync()
   .then(() => {
-    app.listen(3000);
+    app.listen(PORT);
   })
   .catch((err) => {
     console.log(err);
