@@ -1,0 +1,52 @@
+Watch video 1 and 2 from the following link and answer the following
+
+What advantage does typescript gives us?Explain with example?
+Ans -
+
+What does typescript add to javascript?Explain each of them in your own words. Research on google if you are confused.
+Ans -
+
+Watch video 3 and 4 from above link and answer the following [Code along with the trainer.]
+
+Why do we need typescript compiler?
+Ans -
+What happens when you compile?
+Ans -
+Code along with the trainer.
+What are the different types available in typescript?
+Ans -
+Why does add('1', '2') start showing error when the trainer has defined types?
+Ans -
+
+Watch video 5 , 6 and 7 from above link and answer the following [Code along with the trainer.]
+
+What do you mean typescript can infer the types? What is the advantage of this?
+Ans -
+What is the problem with type inferenece sometime and how do you solve with type casting?
+Ans -
+What does tsc init do?
+Ans -
+What does strict mode do?
+Ans -
+What does buttonElement ! exactly do ? Why do we put EXCLAMATION MARK( ! ).
+Ans -
+Why shouldnt we use any type?
+Ans -
+
+Watch video 8 , 9 and 10 from above link answer the following [Code along with the trainer.]. Skip 11.
+
+How we handle objects?
+Ans -
+How do we handle arrays?
+Ans -
+Code along with the trainer.
+What does type keyword do?
+Ans -
+Interface are more frequently used than types. What do you think is the advantage of interfaces?
+Ans -
+How is an array a generic as per the trainer?
+Ans -
+Why do we need to change the target to es6?
+Ans -
+How does generics work with promises.
+Ans -
